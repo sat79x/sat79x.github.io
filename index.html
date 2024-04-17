@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumo Renault Sandero</title>
+</head>
+<body>
+    <form id="myForm">
+        <label for="numero">Ingrese el consumo en L/100:</label><br>
+        <input type="number" id="numero" name="numero"><br><br>
+        <button type="button" onclick="calcular()">Calcular</button>
+    </form>
+
+    <div id="resultado"></div>
+	 <div id="mensaje"></div>
+
+    <script>
+        function calcular() {
+            // Obtener el valor del campo numérico
+            var numero = parseFloat(document.getElementById("numero").value);
+
+            // Validar si se ingresó un número válido
+            if (!isNaN(numero)) {
+                // Multiplicar el número por 0.264
+                var resultado = numero * 0.264;
+
+                // Dividir 100 entre el resultado obtenido
+                var resultadoFinal = 100 / resultado;
+
+                // Mostrar el resultado en un div
+                document.getElementById("resultado").textContent = "El consumo de tu vehículo es: " + resultadoFinal.toFixed(2) + " Km/Galón"; // Mostrar el resultado con dos decimales
+				// Mostrar un mensaje de éxito o alerta
+                var mensajeDiv = document.getElementById("mensaje");
+                mensajeDiv.textContent = resultadoFinal > 28 ? "¡Buen consumo!" : "¡Alerta: Presentas un alto consumo!";
+                mensajeDiv.style.color = resultadoFinal > 28 ? "green" : "red";
+            } else {
+                // Mostrar un mensaje de error si no se ingresó un número válido
+                document.getElementById("resultado").textContent = "Por favor, ingrese un número válido.";
+            }
+        }
+    </script>
+</body>
+</html>
